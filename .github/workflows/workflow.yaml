@@ -30,5 +30,6 @@ jobs:
             git pull origin master
             sudo rm -rf .docker
             docker compose up --build -d
+            docker compose exec alembic upgrade head
           EOF
 
