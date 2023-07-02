@@ -18,7 +18,6 @@ Our project contains set of python scripts for extracting text from PDF resumes 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Project Configuration](#project-configuration)
 - [Testing](#testing)
 - [Deployment](#deployment)
 
