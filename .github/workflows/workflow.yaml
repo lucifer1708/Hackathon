@@ -1,4 +1,4 @@
-name: Staging CI/CD Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@sumitdhiman.in << EOF
             cd /home/lucifer/Hackathon
             git config pull.rebase false
-            git pull origin stage
+            git pull origin master
             rm -rf .docker
             docker compose up --build -d
           EOF

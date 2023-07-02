@@ -45,5 +45,4 @@ async def login(user: UserCreate, db: AsyncSession = Depends(db_session)):
         data={"sub": stored_user.username, "id": stored_user.id},
         expires_delta=access_token_expires,
     )
-
     return {"access_token": access_token, "token_type": "bearer"}
