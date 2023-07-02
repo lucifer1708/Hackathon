@@ -4,6 +4,6 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 COPY . /app
-EXPOSE 8081
+EXPOSE 8000
 EXPOSE 5432
 ENV PYTHONPATH=/app
