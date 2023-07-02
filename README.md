@@ -16,9 +16,75 @@ and integration to provide an efficient and effective solution for automating th
 # RESUME PDF TEXT EXTRACTION AND SUMMARIZATION
 
 Our project contains set of python scripts for extracting text from PDF resumes and performing TEXT summarization using the OpenAI API. 
-Our project includes following files:
 
-- **File#1: compare.py**
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Project Configuration](#project-configuration)
+- [Testing](#testing)
+
+## Prerequisites
+- Python 
+- Docker
+
+## Installation
+
+To install and run the Project Name, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/lucifer1708/Hackathon.git
+   cd Hackathon
+
+## 1. Setting up virtual enviroment
+
+```
+python-m venv venv
+source venv/bin/activate  # On Windows, use venv\Scripts\activate.bat
+```
+
+## 2. Install the required dependencies
+
+```
+pip install -r requirements.txt
+```
+
+## 3. Start the Docker containers:
+
+```
+docker-compose up -d
+```
+
+## 4. Set up the project configuration:
+
+Copy the .env.example file and rename it to .env.
+Edit the .env file and fill in the required values for the environment variables.
+
+## 5. For Migration
+
+```
+docker compose exec backend alembic upgrade head
+
+```
+
+## 6. Start the development server:
+
+```
+python -m src.server
+
+```
+
+# Project Configuration
+
+The project can be configured by modifying the following files:
+
+- 'settings.py': Contains the project's settings and configurations.
+- 'docker-compose.yaml': Defines the Docker services and configurations.
+
+# Following are the files:
+
+**File#1: compare.py**
 
 This file compare resumes and perform analysis using OpenAI API.
 
@@ -73,6 +139,13 @@ This file is basically performing summarization of resume into subfield using Op
 
 It setup the API key, import extracted resume text from module i.e. rs_pdf. Then system and user messages are defined that are representing the resume subfield.
 This will help us quickly understanding the key information in different section of resume.
+
+## Testing
+
+- You can run tests by using following command:
+    ```bash
+    python -m src.tests.run_test
+    ```
   
     
 
