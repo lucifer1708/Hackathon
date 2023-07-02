@@ -1,4 +1,4 @@
-# PROJECT TITLE: RESUME-PARSER
+# PROJECT TITLE: Career Intellect
 
 ## Startup Gateway Hackathon - MERCOR
 
@@ -22,6 +22,7 @@ Our project contains set of python scripts for extracting text from PDF resumes 
 - [Installation](#installation)
 - [Project Configuration](#project-configuration)
 - [Testing](#testing)
+- [Deployment](#deployment)
 
 ## Prerequisites
 - Python 
@@ -153,7 +154,12 @@ This will help us quickly understanding the key information in different section
     python -m src.tests.run_test
     ```
   
-    
+## Deployment
 
+Following are the links for deployment.
+
+- Link#1. (https://streamlit.hackathon.sumitdhiman.in/)
+
+- Link#2. (https://hackathon.sumitdhiman.in/)
 
   
