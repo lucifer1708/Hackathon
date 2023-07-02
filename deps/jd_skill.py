@@ -73,7 +73,7 @@ As part of PayPal’s commitment to employees’ health and safety, we have esta
 """
 
 
-system_message = f"""
+system_message = """
 Your task is to summarise given job description into sub fields like Responsibilities, Job brief , Skills and Requirements\
 Respond in json format for subfields of Job Description\
 Give output in dictionary with sub fields as keys\

@@ -43,12 +43,14 @@ async def login(user: UserCreate, db: AsyncSession = Depends(db_session)):
     # Generate JWT token
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": stored_user.username}, expires_delta=access_token_expires
+        data={"sub": stored_user.username, "id": stored_user.id},
+        expires_delta=access_token_expires,
     )
 
     return {"access_token": access_token, "token_type": "bearer"}
 
 
 @router.get("/protected_test")
-async def protected_route(current_user: str = Depends(get_current_user)):
-    return {"message": "working"}
+async def protected_route(current_user: User = Depends(get_current_user)):
+
+    return {"message": current_user}

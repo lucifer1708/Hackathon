@@ -19,7 +19,7 @@ def get_completion_from_messages(
     return response.choices[0].message["content"]
 
 
-system_message = f"""
+compare_system_message = """
 You are a helpful assistant whose job is to enhance resumes of its users\
 Respond in json format for SWOT \
 You will be given what 1)current resume fields value 2) job description for the applying post in context. \

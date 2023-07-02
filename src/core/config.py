@@ -18,11 +18,11 @@ class Settings(BaseSettings):
     # Enable uvicorn reloading
     RELOAD: bool = True
     # Database settings
-    DB_HOST: str = "db"
+    DB_HOST: str = "localhost"
     DB_PORT: int = 5432
     DB_USER: str = "postgres"
     DB_PASS: str = "sd565211"
-    _DB_BASE: str = "test1"
+    _DB_BASE: str = "test2"
     DB_ECHO: bool = False
 
     SECRET_KEY = "c8bb3d5b40e6e7d741d79a9ca5116052675843c370e92338e58eadb0d8e23f2ca3234c3cef978034a3218db2671f51dcbac3ba8069bd952717903f8b60405528"  # Replace with a strong secret key in production

@@ -8,6 +8,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi.security.utils import get_authorization_scheme_param
 from passlib.context import CryptContext
 
+from src.api.user.schemas import UserSchema
 from src.core.config import settings
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -46,27 +47,19 @@ class LoggingHTTPBearer(HTTPBearer):
 oauth2_bearer = LoggingHTTPBearer()
 
 
-def get_authorization_header(authorization: str = Header(None)):
-    return authorization
+def get_current_user(
+    token: HTTPAuthorizationCredentials = Depends(oauth2_bearer),
+) -> UserSchema:
 
-
-# def get_token(auth_header: str = Depends(get_authorization_header)):
-#     if auth_header is None or auth_header.split()[0].lower() != "bearer":
-#         raise HTTPException(
-#             status_code=401, detail="Invalid authentication credentials"
-#         )
-#     return auth_header.split()[1]
-
-
-def get_current_user(token: HTTPAuthorizationCredentials = Depends(oauth2_bearer)):
     try:
         payload = jwt.decode(
             token.credentials, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
         )
         username = payload.get("sub")
+        id = payload.get("id")
         if username is None:
             raise HTTPException(status_code=401, detail="Invalid authentication token")
-        return username
+        return {"username": username, "id": id}
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token has expired")
     except jwt.InvalidTokenError:

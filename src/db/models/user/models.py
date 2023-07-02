@@ -1,11 +1,18 @@
-from src.db.models.common import TimestampModel, UUIDModel
+from typing import Optional
+
+from sqlmodel import Column, Field, Relationship, String
+
+from src.db.models.common import TimestampModel
+from src.db.models.services.models import JobDesc
 
 
-class User(TimestampModel, UUIDModel, table=True):
-    __tablename__ = "users"
-
+class User(TimestampModel, table=True):
+    id: int = Field(default=None, primary_key=True)
     username: str
     password: str
-
-    def __repr__(self):
-        return f"<User (id: {self.id})>"
+    file: Optional["File"] = Relationship(
+        sa_relationship_kwargs={"uselist": False}, back_populates="user"
+    )
+    jobdesc: Optional["JobDesc"] = Relationship(
+        sa_relationship_kwargs={"uselist": False}, back_populates="user"
+    )

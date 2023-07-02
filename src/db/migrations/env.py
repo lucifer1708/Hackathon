@@ -8,11 +8,12 @@ from sqlalchemy.ext.asyncio.engine import create_async_engine
 from sqlmodel import SQLModel
 
 from src.core.config import settings
+from src.db.models.services.models import File
+from src.db.models.user.models import User
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-from src.db.models.user.models import User
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
