@@ -1,6 +1,6 @@
 # PROJECT TITLE: RESUME-PARSER
 
-## MERCOR HACKATHON
+## Startup Gateway Hackathon - MERCOR
 
 ## TEAM NAME: 3 Musketeers
 
