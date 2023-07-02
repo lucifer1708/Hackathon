@@ -1,12 +1,11 @@
 from datetime import timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from src.api.user.schemas import UserCreate
-from src.api.user.services import create_access_token, get_current_user, pwd_context
+from src.api.user.services import create_access_token, pwd_context
 from src.core.config import settings
 from src.db.db import db_session
 from src.db.models.user.models import User
@@ -48,9 +47,3 @@ async def login(user: UserCreate, db: AsyncSession = Depends(db_session)):
     )
 
     return {"access_token": access_token, "token_type": "bearer"}
-
-
-@router.get("/protected_test")
-async def protected_route(current_user: User = Depends(get_current_user)):
-
-    return {"message": current_user}
