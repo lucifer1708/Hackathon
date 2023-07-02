@@ -13,7 +13,7 @@ def get_app() -> FastAPI:
     """
     app = FastAPI(
         title="Hackathon Project",
-        description="Kuch Desc daal do.. Plzz",
+        description="",
         version="1.0",
         docs_url="/docs/",
         redoc_url="/api/redoc/",

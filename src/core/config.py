@@ -9,23 +9,24 @@ BASE_DIR = Path(__file__).parent.resolve()
 class Settings(BaseSettings):
     """Application settings."""
 
-    ENV: str = "dev"
+    ENV: str = "production"
     HOST: str = "0.0.0.0"
     PORT: int = 8000
+    OPENAI_APIKEY: str
     _BASE_URL: str = f"https://{HOST}:{PORT}"
     # quantity of workers for uvicorn
     WORKERS_COUNT: int = 1
     # Enable uvicorn reloading
     RELOAD: bool = True
     # Database settings
-    DB_HOST: str = "localhost"
-    DB_PORT: int = 5432
-    DB_USER: str = "postgres"
-    DB_PASS: str = "sd565211"
-    _DB_BASE: str = "test2"
+    DB_HOST: str
+    DB_PORT: int
+    DB_USER: str
+    DB_PASS: str
+    _DB_BASE: str = "test1"
     DB_ECHO: bool = False
 
-    SECRET_KEY = "c8bb3d5b40e6e7d741d79a9ca5116052675843c370e92338e58eadb0d8e23f2ca3234c3cef978034a3218db2671f51dcbac3ba8069bd952717903f8b60405528"  # Replace with a strong secret key in production
+    SECRET_KEY: str = "c8bb3d5b40e6e7d741d79a9ca5116052675843c370e92338e58eadb0d8e23f2ca3234c3cef978034a3218db2671f51dcbac3ba8069bd952717903f8b60405528"  # Replace with a strong secret key in production
     ALGORITHM = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -48,7 +49,7 @@ class Settings(BaseSettings):
         return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_BASE}"
 
     class Config:
-        env_file = f"{BASE_DIR}/.env"
+        env_file = ".env"
         env_file_encoding = "utf-8"
         fields = {
             "_BASE_URL": {

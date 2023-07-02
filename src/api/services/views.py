@@ -1,14 +1,13 @@
 import json
 
 import openai
-from fastapi import (APIRouter, Body, Depends, File, HTTPException, Request, Response,
-                     UploadFile)
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from sqlmodel import and_, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from src.api.services.schemas import Compare
 from src.api.user.services import get_current_user
+from src.core.config import settings
 from src.db.db import db_session
 from src.db.models.services.models import File as FileModel
 from src.db.models.services.models import JobDesc
@@ -18,7 +17,7 @@ from src.deps.services import (compare_completion_from_messages, compare_system_
 from src.deps.utils import read_pdf
 
 router = APIRouter()
-openai.api_key = "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"
+openai.api_key = f"{settings.OPENAI_APIKEY}"
 
 
 @router.post("/uploadfile")

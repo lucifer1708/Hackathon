@@ -1,7 +1,9 @@
 import openai
 
+from src.core.config import settings
+
 # from jd_skill import summ_desc
-openai.api_key = "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"
+openai.api_key = f"{settings.OPENAI_APIKEY}"
 
 
 system_message = """
