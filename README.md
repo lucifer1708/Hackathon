@@ -26,6 +26,7 @@ Our project contains set of python scripts for extracting text from PDF resumes 
 ## Prerequisites
 - Python 
 - Docker
+- Postgres
 
 ## Installation
 
@@ -53,7 +54,7 @@ pip install -r requirements.txt
 ## 3. Start the Docker containers:
 
 ```
-docker-compose up -d
+docker-compose up  --build -d
 ```
 
 ## 4. Set up the project configuration:
@@ -61,7 +62,12 @@ docker-compose up -d
 Copy the .env.example file and rename it to .env.
 Edit the .env file and fill in the required values for the environment variables.
 
-## 5. For Migration
+## 5. Generate a new Alembic script
+```
+docker compose exec backend alembic revision --autogenerate
+```
+
+## 6. For Migration
 
 ```
 docker compose exec backend alembic upgrade head
