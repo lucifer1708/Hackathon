@@ -12,10 +12,6 @@ class File(TimestampModel, table=True):
     user: Optional["User"] = Relationship(back_populates="file")
     filename: str = Field(sa_column=Column(String, unique=True))
     data: str = Field(sa_column=Column(String))
-    # projects: str = Field(default="", sa_column=Column(String))
-    # achievements: str = Field(default="", sa_column=Column(String))
-    # skills: str = Field(default="", sa_column=Column(String))
-    # experience: str = Field(default="", sa_column=Column(String))
 
     class Config:
         arbitrary_types_allowed = True

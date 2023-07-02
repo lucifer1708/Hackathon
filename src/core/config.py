@@ -19,10 +19,10 @@ class Settings(BaseSettings):
     # Enable uvicorn reloading
     RELOAD: bool = True
     # Database settings
-    DB_HOST: str
-    DB_PORT: int
-    DB_USER: str
-    DB_PASS: str
+    DB_HOST: str = "db"
+    DB_PORT: int = 5432
+    DB_USER: str = "postgres"
+    DB_PASS: str = "sd565211"
     _DB_BASE: str = "test1"
     DB_ECHO: bool = False
 
