@@ -15,7 +15,7 @@ def get_app() -> FastAPI:
         title="Hackathon Project",
         description="Kuch Desc daal do.. Plzz",
         version="1.0",
-        docs_url="/api/docs/",
+        docs_url="/docs/",
         redoc_url="/api/redoc/",
         openapi_url="/api/openapi.json",
         default_response_class=UJSONResponse,
