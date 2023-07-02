@@ -32,11 +32,3 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-
-  streamlit-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8501:8501"
-    command: streamlit run streamlit/main.py
