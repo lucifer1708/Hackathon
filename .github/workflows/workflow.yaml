@@ -30,6 +30,6 @@ jobs:
             git pull origin master
             sudo rm -rf .docker
             docker compose up --build -d
-            docker compose exec backend alembic upgrade head
+            sleep 10 && docker compose exec backend alembic upgrade head
           EOF
 
