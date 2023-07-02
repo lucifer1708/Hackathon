@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     _DB_BASE: str = "test1"
     DB_ECHO: bool = False
 
-    SECRET_KEY: str = "c8bb3d5b40e6e7d741d79a9ca5116052675843c370e92338e58eadb0d8e23f2ca3234c3cef978034a3218db2671f51dcbac3ba8069bd952717903f8b60405528"  # Replace with a strong secret key in production
+    SECRET_KEY: str  # Replace with a strong secret key in production
     ALGORITHM = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
