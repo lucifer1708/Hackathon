@@ -13,6 +13,8 @@
 The objective of our project is to extract relevant information from resume and present it in structured format. This project involves various stages of data processing, analysis 
 and integration to provide an efficient and effective solution for automating the recruitment process. 
 
+Also for more details refer to the "Hackathon-poster.pdf" given in the repo.
+
 Our project contains set of python scripts for extracting text from PDF resumes and performing TEXT summarization using the OpenAI API. 
 
 ## Table of Contents
