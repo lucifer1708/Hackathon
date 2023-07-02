@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     DB_PORT: int = 5432
     DB_USER: str = "postgres"
     DB_PASS: str = "sd565211"
-    _DB_BASE: str = "test1"
+    _DB_BASE: str = "postgres"
     DB_ECHO: bool = False
 
     SECRET_KEY: str  # Replace with a strong secret key in production
