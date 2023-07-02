@@ -13,7 +13,7 @@ def get_app() -> FastAPI:
     :return: application.
     """
     app = FastAPI(
-        title="Resume Analyser",
+        title="Career Intellect",
         description="The objective of our project is to extract relevant information from resume and present it in structured format. This project involves various stages of data processing, analysis and integration to provide an efficient and effective solution for automating the recruitment process.",
         version="1.0",
         docs_url="/docs/",
