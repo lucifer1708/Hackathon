@@ -24,11 +24,11 @@ jobs:
 
       - name: Deploy to EC2 instance
         run: |
-          ssh -o StrictHostKeyChecking=no root@sumitdhiman.in << EOF
-            cd /home/lucifer/Hackathon
+          ssh -o StrictHostKeyChecking=no lucifer@sumitdhiman.in << EOF
+            cd Hackathon
             git config pull.rebase false
             git pull origin master
-            rm -rf .docker
+            sudo rm -rf .docker
             docker compose up --build -d
           EOF
 
