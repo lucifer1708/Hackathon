@@ -83,7 +83,7 @@ python -m src.server
 
 - You can run tests by using following command:
     ```bash
-    python -m src.tests.run
+    python -m tests.run
     ```
   
 ## Deployment
