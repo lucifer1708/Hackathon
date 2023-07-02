@@ -68,3 +68,4 @@ class TestSettings(Settings):
 
 
 settings = TestSettings() if "pytest" in modules else Settings()
+print(settings.OPENAI_APIKEY)
