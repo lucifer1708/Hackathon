@@ -11,7 +11,7 @@ class Settings(BaseSettings):
 
     ENV: str = "production"
     HOST: str = "0.0.0.0"
-    PORT: int = 80
+    PORT: int = 8000
     OPENAI_APIKEY: str
     _BASE_URL: str = f"https://{HOST}:{PORT}"
     # quantity of workers for uvicorn
