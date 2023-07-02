@@ -30,11 +30,12 @@ Our project contains set of python scripts for extracting text from PDF resumes 
 
 To install and run the Project Name, follow these steps:
 
-1. Clone the repository:
+- Clone the repository:
 
    ```bash
    git clone https://github.com/lucifer1708/Hackathon.git
    cd Hackathon
+   ```
 
 ## 1. Setting up virtual enviroment
 
@@ -68,14 +69,12 @@ docker compose exec backend alembic revision --autogenerate
 
 ```
 docker compose exec backend alembic upgrade head
-
 ```
 
 ## 7. Start the development server:
 
 ```
 python -m src.server
-
 ```
 
 
