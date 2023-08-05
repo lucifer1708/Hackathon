@@ -18,7 +18,7 @@ async def signup(user: UserCreate, db: AsyncSession = Depends(db_session)):
     """
     Create a new user in the database and return a message if successful or raise an exception if the username already exists in the database.
 
-    Attributes:
+    Arguments:
     ---------------
     user: UserCreate
         The user to be created in the database.
@@ -44,7 +44,7 @@ async def login(user: UserCreate, db: AsyncSession = Depends(db_session)):
     """
     Check if the user exists in the database and if the password is correct. If so, return an access token.
 
-    Attributes:
+    Arguments:
     ---------------
     user: UserCreate
         The user created in the database.

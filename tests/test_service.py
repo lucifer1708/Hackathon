@@ -9,7 +9,7 @@ def test_uploadfile():
             "Authorization": f"Bearer {jwt}",
             "Content-type": "multipart/form-data",
         },
-        files={"file": open("resume-sample.pdf", "rb")},
+        files={"file": open("tests/resume-sample.pdf", "rb")},
     )
     assert response.status_code == 200
 

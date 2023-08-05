@@ -19,11 +19,11 @@ class Settings(BaseSettings):
     # Enable uvicorn reloading
     RELOAD: bool = True
     # Database settings
-    DB_HOST: str = "db"
-    DB_PORT: int = 5432
-    DB_USER: str = "postgres"
-    DB_PASS: str = "sd565211"
-    _DB_BASE: str = "test1"
+    POSTGRES_HOST: str = "db"
+    POSTGRES_PORT: int
+    POSTGRES_USER: str
+    POSTGRES_PASSWORD: str
+    _DB_BASE: str = "hackathon"
     DB_ECHO: bool = False
 
     SECRET_KEY: str  # Replace with a strong secret key in production
@@ -46,7 +46,7 @@ class Settings(BaseSettings):
         :return: Database URL.
         """
 
-        return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_BASE}"
+        return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.DB_BASE}"
 
     class Config:
         env_file = ".env"

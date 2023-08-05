@@ -28,7 +28,8 @@ async def uploadfile(
 ):
     """
     Upload a file to the server and save it in the database.
-    Attributes:
+
+    Arguments:
     --------------
     file: file to upload
     db: database session
@@ -68,7 +69,7 @@ async def get_files(
     """
     Get all files from the database.
 
-    Attributes:
+    Arguments:
     --------------
     db: database session
     current_user: current user
@@ -91,7 +92,7 @@ async def get_jd(
     """
     Get all job descriptions from the database.
 
-    Attributes:
+    Arguments:
     --------------
     db: database session
     current_user: current user
@@ -115,7 +116,7 @@ async def Job_Desc(
     """
     Get all job descriptions from the database.
 
-    Attributes:
+    Arguments:
     --------------
     text: text to be processed
     db: database session
@@ -153,7 +154,7 @@ async def compare(
     """
     Compare a resume with a job description.
 
-    Attributes:
+    Arguments:
     --------------
     compare: resume and job description to compare
     db: database session
