@@ -2,10 +2,9 @@ import PyPDF2
 
 
 def read_pdf(file_path):
-    # Usage example
-    # pdf_file = "download.pdf"
-    # extracted_text = read_pdf(pdf_file)
-    # print(extracted_text)
+    """
+    read_pdf is a function that reads a pdf file and returns the text
+    """
     with open(file_path, "rb") as file:
         reader = PyPDF2.PdfReader(file)
         num_pages = len(reader.pages)

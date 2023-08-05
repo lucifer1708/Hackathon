@@ -5,8 +5,11 @@ from tests.test_login_signup import jwt
 def test_uploadfile():
     response = client.post(
         "/api/services/uploadfile",
-        headers={"Authorization": f"Bearer {jwt}"},
-        files={"file": ("filename", open("resume-sample.pdf", "rb"), "image/jpeg")},
+        headers={
+            "Authorization": f"Bearer {jwt}",
+            "Content-type": "multipart/form-data",
+        },
+        files={"file": open("resume-sample.pdf", "rb")},
     )
     assert response.status_code == 200
 

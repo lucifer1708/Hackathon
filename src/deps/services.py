@@ -2,7 +2,6 @@ import openai
 
 from src.core.config import settings
 
-# from jd_skill import summ_desc
 openai.api_key = f"{settings.OPENAI_APIKEY}"
 
 
@@ -24,6 +23,25 @@ Give output in dictionary with sub fields as keys\
 def get_completion_from_messages(
     messages, model="gpt-3.5-turbo", temperature=0.5, max_tokens=2000
 ):
+    """
+    get_completion_from_messages is a function which takes messages as input and returns
+    the response from the model as output.
+
+    Parameters:
+    --------------
+    messages: list
+        list of messages to be sent to the model for completion from openai
+    model: str
+        model name to be used for completion from openai
+    temperature: float
+        temperature to be used for completion from openai
+    max_tokens: int
+        max_tokens to be used for completion from openai
+
+    Returns:
+    --------------
+    Response: str
+    """
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
@@ -46,6 +64,26 @@ Give output in dictionary with SWOT as keys and values\
 def compare_completion_from_messages(
     messages, model="gpt-3.5-turbo", temperature=0.5, max_tokens=2000
 ):
+
+    """
+    compare_completion_from_messages is a function which takes messages as input and returns
+    the response from the model as output.
+
+    Parameters:
+    --------------
+    messages: list
+        list of messages to be sent to the model for completion from openai
+    model: str
+        model name to be used for completion from openai
+    temperature: float
+        temperature to be used for completion from openai
+    max_tokens: int
+        max_tokens to be used for completion from openai
+
+    Returns:
+    --------------
+    Response: str
+    """
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,

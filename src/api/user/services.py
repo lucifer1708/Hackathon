@@ -15,7 +15,18 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 class LoggingHTTPBearer(HTTPBearer):
+    """
+    Custom HTTPBearer class that logs the Authorization header and the credentials.
+
+    Methods:
+    ------------
+    __call__: Overrides the __call__ method of the parent class.
+    """
+
     def __init__(self, *args, **kwargs):
+        """
+        Initializes the LoggingHTTPBearer class.
+        """
         super().__init__(*args, **kwargs)
         self.logger = logging.getLogger(__name__)
         logging.basicConfig(level=logging.INFO)
@@ -23,6 +34,9 @@ class LoggingHTTPBearer(HTTPBearer):
     async def __call__(
         self, request: Request
     ) -> Optional[HTTPAuthorizationCredentials]:
+        """
+        Overrides the __call__ method of the parent class.
+        """
         authorization: str = request.headers.get("Authorization")
         if not authorization:
             self.logger.info("Missing Authorization header.")
@@ -50,7 +64,17 @@ oauth2_bearer = LoggingHTTPBearer()
 def get_current_user(
     token: HTTPAuthorizationCredentials = Depends(oauth2_bearer),
 ) -> UserSchema:
+    """
+    Funtion that returns the current user.
 
+    Attributes:
+    ----------------
+    token: The token of the current user.
+
+    Returns:
+    ----------------
+    UserSchema: The current user.
+    """
     try:
         payload = jwt.decode(
             token.credentials, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
@@ -66,7 +90,19 @@ def get_current_user(
         raise HTTPException(status_code=401, detail="Invalid token")
 
 
-def create_access_token(data: dict, expires_delta: timedelta = None):
+def create_access_token(data: dict, expires_delta: timedelta = None) -> str:
+    """
+    Function that creates an access token.
+
+    Attributes:
+    ----------------
+    data: The data to be encoded in the token.
+    expires_delta: The expiration time of the token.
+
+    Returns:
+    ----------------
+    str: The encoded token.
+    """
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta

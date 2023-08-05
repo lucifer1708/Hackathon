@@ -15,15 +15,24 @@ router = APIRouter()
 
 @router.post("/signup")
 async def signup(user: UserCreate, db: AsyncSession = Depends(db_session)):
-    # Check if the username already exists
+    """
+    Create a new user in the database and return a message if successful or raise an exception if the username already exists in the database.
+
+    Attributes:
+    ---------------
+    user: UserCreate
+        The user to be created in the database.
+    db: AsyncSession = Depends(db_session)
+        The database session.
+
+    Returns:
+    --------------
+    dict: A dictionary containing a message if the user was created successfully.
+    """
     existing_user = await db.execute(select(User).where(User.username == user.username))
     if existing_user.scalar():
         raise HTTPException(status_code=400, detail="Username already exists")
-
-    # Hash the password before storing
     hashed_password = pwd_context.hash(user.password)
-
-    # Create the new user
     new_user = User(username=user.username, password=hashed_password)
     db.add(new_user)
     await db.commit()
@@ -32,14 +41,26 @@ async def signup(user: UserCreate, db: AsyncSession = Depends(db_session)):
 
 @router.post("/login")
 async def login(user: UserCreate, db: AsyncSession = Depends(db_session)):
-    # Retrieve the user from the database
+    """
+    Check if the user exists in the database and if the password is correct. If so, return an access token.
+
+    Attributes:
+    ---------------
+    user: UserCreate
+        The user created in the database.
+    db: AsyncSession = Depends(db_session)
+        The database session.
+
+    Returns:
+    --------------
+    dict: A dictionary containing an access token if the user exists in the database and the password is correct.
+    """
     stored_user = await db.execute(select(User).where(User.username == user.username))
     stored_user = stored_user.scalar()
 
     if not stored_user or not pwd_context.verify(user.password, stored_user.password):
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
-    # Generate JWT token
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": stored_user.username, "id": stored_user.id},
