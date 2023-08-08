@@ -39,7 +39,7 @@ async def uploadfile(
     --------------
     message: success message
     """
-    with open(file.filename, "wb") as f:
+    with open(file.filename, "rb") as f:
         f.write(await file.read())
     extracted_text = read_pdf(file.filename)
     messages = [

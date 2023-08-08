@@ -16,17 +16,11 @@ down:
 shell-db:
 	docker compose exec db psql postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_SERVER):$(POSTGRES_PORT)/$(POSTGRES_DB)
 
+shell-db-test:
+	docker compose exec db psql postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_SERVER):$(POSTGRES_PORT)/$(POSTGRES_DB)_test
+
 test:
 	docker compose exec backend python -m tests.run
-
-revision:
-	docker compose exec backend alembic revision --autogenerate
-
-upgrade:
-	docker compose exec backend alembic upgrade head
-
-downgrade:
-	docker compose exec backend alembic downgrade head
 
 revision:
 	docker compose exec backend alembic revision --autogenerate

@@ -1,34 +1,55 @@
+import uuid
+from pathlib import Path
+
+import pytest
+
 from tests.conftest import client
-from tests.test_login_signup import jwt
+from tests.test_login_signup import valid_jwt
+
+# from httpx import AsyncClient
 
 
-def test_uploadfile():
+def test_uploadfile(valid_jwt):
+    boundary = uuid.uuid4().hex
+    headers = {
+        "Authorization": f"Bearer {valid_jwt}",
+        "Content-Type": f"multipart/form-data; boundary={boundary}",
+    }
+    test_file = Path("tests", "resume-sample.pdf")
+    file = {
+        "file": (
+            "resume-sample.pdf",
+            test_file.open("rb"),
+            "application/pdf",
+        )
+    }
     response = client.post(
         "/api/services/uploadfile",
-        headers={
-            "Authorization": f"Bearer {jwt}",
-            "Content-type": "multipart/form-data",
-        },
-        files={"file": open("tests/resume-sample.pdf", "rb")},
+        headers=headers,
+        files=file,
     )
+    print(response.text)
     assert response.status_code == 200
 
 
-def test_get_files():
+@pytest.mark.asyncio
+async def test_get_files(valid_jwt):
     response = client.get(
-        "/api/services/get_files", headers={"Authorization": f"Bearer {jwt}"}
+        "/api/services/get_files", headers={"Authorization": f"Bearer {valid_jwt}"}
     )
     assert response.status_code == 200
 
 
-def test_get_jd():
+@pytest.mark.asyncio
+async def test_get_jd(valid_jwt):
     response = client.get(
-        "/api/services/get_jd", headers={"Authorization": f"Bearer {jwt}"}
+        "/api/services/get_jd", headers={"Authorization": f"Bearer {valid_jwt}"}
     )
     assert response.status_code == 200
 
 
-def test_job_desc():
+@pytest.mark.asyncio
+async def test_job_desc(valid_jwt):
     text = """
 About the job
 It's fun to work in a company where people truly BELIEVE in what they are doing!
@@ -69,16 +90,17 @@ Not the right fit? Let us know you're interested in a future opportunity by clic
     """
     response = client.get(
         "/api/services/job_desc?text=" + text,
-        headers={"Authorization": f"Bearer {jwt}"},
+        headers={"Authorization": f"Bearer {valid_jwt}"},
     )
     assert response.status_code == 200
 
 
-def test_compare():
+@pytest.mark.asyncio
+async def test_compare(valid_jwt):
     payload = {"resume_id": 1, "JD_id": 1}
     response = client.post(
         "/api/services/compare",
         json=payload,
-        headers={"Authorization": f"Bearer {jwt}"},
+        headers={"Authorization": f"Bearer {valid_jwt}"},
     )
     assert response.status_code == 200

@@ -39,6 +39,10 @@ class Settings(BaseSettings):
         return self._BASE_URL if self._BASE_URL.endswith("/") else f"{self._BASE_URL}/"
 
     @property
+    def test_DB_URL(self) -> str:
+        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.DB_BASE}"
+
+    @property
     def DB_URL(self) -> str:
         """
         Assemble Database URL from settings.
