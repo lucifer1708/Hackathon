@@ -1,5 +1,5 @@
 import json
-
+import os
 import openai
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from sqlmodel import and_, select
@@ -39,7 +39,9 @@ async def uploadfile(
     --------------
     message: success message
     """
-    with open(file.filename, "rb") as f:
+    upload_path = "/"  # Specify the correct upload path
+    file_path = os.path.join(upload_path, file.filename)
+    with open(file_path, "wb") as f:
         f.write(await file.read())
     extracted_text = read_pdf(file.filename)
     messages = [
